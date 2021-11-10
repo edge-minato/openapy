@@ -20,6 +20,7 @@
 
   // python specific
   "[python]": {
+    "editor.defaultFormatter": null,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true // execute isort
     },
@@ -29,6 +30,8 @@
   // common
   "cSpell.words": [
     "noqa",
+    "openapi",
+    "openapy",
     "pflake8",
     "pyproject",
     "venv"
@@ -37,7 +40,7 @@
     ".coverage": true,
     ".mypy_cache": true,
     ".pytest_cache": true,
-    ".tox": true,
-    ".venv": true
+    ".tox": false,
+    ".venv": false
   }
 }

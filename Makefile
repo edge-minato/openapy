@@ -17,7 +17,10 @@ build: clean
 	poetry build
 
 run:
-	poetry run ${PACKAGE}
+	poetry run ${PACKAGE} -s "tests/server/src/openapi_server/apis" -t "testtttt"
+
+try:
+	poetry run ${PACKAGE} -s ./tests/server/src/openapi_server/apis -d ./tests -t ./tests
 
 debug:
 	poetry run pytest ./tests -s -v --openapy --cov-branch --durations=0
@@ -26,7 +29,7 @@ test:
 	poetry run tox
 
 unittest:
-	poetry run tox -e py310
+	poetry run tox -e py39
 
 style:
 	poetry run tox -e black,flake8,mypy,isort
