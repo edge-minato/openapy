@@ -31,13 +31,14 @@
     "noqa",
     "pflake8",
     "pyproject",
-    "venv"
+    "venv",
+    "openapy"
   ],
   "files.exclude": {
     ".coverage": true,
     ".mypy_cache": true,
     ".pytest_cache": true,
     ".tox": true,
-    ".venv": true
+    ".venv": false
   }
 }
