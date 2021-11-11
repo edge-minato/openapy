@@ -1,0 +1,15 @@
+from {{packageName}} import processor
+
+
+
+{{#notes}}"""{{.}}"""{{/notes}}{{^notes}}{{/notes}}
+return processor.{{#tags}}{{#-first}}{{name}}{{/-first}}{{/tags}}.{{operationId}}(
+        {{#allParams}}
+        {{paramName}},
+        {{/allParams}}
+        {{#hasAuthMethods}}
+        {{#authMethods}}
+        token_{{name}},
+        {{/authMethods}}
+        {{/hasAuthMethods}}
+    )

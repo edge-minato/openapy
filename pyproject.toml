@@ -93,7 +93,7 @@ require_locked_deps = true
 install_dev_deps = true
 commands =
     poetry install -vv --no-root
-    pytest ./tests -v --cov=openapy --cov-branch --durations=0
+    pytest ./tests -v -s --cov=openapy --cov-branch --durations=0
 [testenv:flake8]
 commands = poetry run pflake8 --statistics ./openapy ./tests
 [testenv:black]

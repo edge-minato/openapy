@@ -14,10 +14,12 @@ repos:
     rev: 21.10b0
     hooks:
       - id: black
+        exclude: ^tests/server
   - repo: https://github.com/csachs/pyproject-flake8
     rev: v0.0.1a2.post1
     hooks:
       - id: pyproject-flake8
+        exclude: ^tests/server
   - repo: https://github.com/pycqa/isort
     rev: 5.10.1
     hooks:
@@ -26,3 +28,4 @@ repos:
     rev: v0.910-1
     hooks:
       - id: mypy
+        exclude: ^tests/server
