@@ -23,6 +23,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.7"
 single-source = "^0.2.0"
+Jinja2 = "^3.0.3"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"
@@ -42,7 +43,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-pypj = "openapy.main:main"
+openapy = "openapy.main:main"
 
 [tool.black]
 line-length = 119
@@ -62,6 +63,7 @@ max-line-length = 119
 max-complexity = 10
 select = "C,E,F,W,B"
 ignore = "E203"
+exclude = "tests/server"
 
 [tool.mypy]
 # common
@@ -75,6 +77,8 @@ disallow_untyped_defs = true
 warn_return_any = true
 warn_unused_configs = true
 warn_redundant_casts = true
+# target
+exclude = "^tests/server"
 
 [tool.isort]
 profile = "black"

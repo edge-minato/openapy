@@ -35,4 +35,5 @@ class User(BaseModel):
     phone: Optional[str] = None
     user_status: Optional[int] = None
 
+
 User.update_forward_refs()

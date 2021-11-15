@@ -19,9 +19,7 @@ from openapi_server.models.extra_models import TokenModel
 
 
 def get_token_api_key(
-    token_api_key_header: str = Security(
-        APIKeyHeader(name="api_key", auto_error=False)
-    ),
+    token_api_key_header: str = Security(APIKeyHeader(name="api_key", auto_error=False)),
 ) -> TokenModel:
     """
     Check and retrieve authentication information from api_key.
@@ -36,6 +34,7 @@ def get_token_api_key(
 
     ...
 
+
 oauth2_implicit = OAuth2(
     flows=OAuthFlows(
         implicit=OAuthFlowImplicit(
@@ -43,15 +42,13 @@ oauth2_implicit = OAuth2(
             scopes={
                 "write:pets": "modify pets in your account",
                 "read:pets": "read your pets",
-            }
+            },
         )
     )
 )
 
 
-def get_token_petstore_auth(
-    security_scopes: SecurityScopes, token: str = Depends(oauth2_implicit)
-) -> TokenModel:
+def get_token_petstore_auth(security_scopes: SecurityScopes, token: str = Depends(oauth2_implicit)) -> TokenModel:
     """
     Validate and decode token.
 
@@ -64,9 +61,7 @@ def get_token_petstore_auth(
     ...
 
 
-def validate_scope_petstore_auth(
-    required_scopes: SecurityScopes, token_scopes: List[str]
-) -> bool:
+def validate_scope_petstore_auth(required_scopes: SecurityScopes, token_scopes: List[str]) -> bool:
     """
     Validate required scopes are included in token scope
 

@@ -19,6 +19,9 @@ build: clean
 run:
 	poetry run ${PACKAGE}
 
+try:
+	poetry run ${PACKAGE} -s ./tests/server/src/openapi_server/apis -d ./tests -t ./tests
+
 debug:
 	poetry run pytest ./tests -s -v --openapy --cov-branch --durations=0
 

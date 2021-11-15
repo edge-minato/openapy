@@ -50,9 +50,7 @@ async def delete_order(
     summary="Returns pet inventories by status",
 )
 async def get_inventory(
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> Dict[str, int]:
     """Returns a map of status codes to quantities"""
     return processor.store.get_inventory(

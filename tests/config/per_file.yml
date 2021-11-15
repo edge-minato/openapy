@@ -1,0 +1,11 @@
+- per_file:
+  - src:
+    - dir: "tests/server/src/openapi_server/api"
+    - prefix: ""
+    - suffix: "_api.py"
+  - dst:
+    - dir: "./example_output/per_file"
+    - prefix: "prefix_"
+    - suffix: ".py"
+  - template: "tests/template/per_file.j2"
+  - iter: "file"

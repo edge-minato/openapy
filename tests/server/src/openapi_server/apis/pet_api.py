@@ -35,9 +35,7 @@ router = APIRouter()
 )
 async def add_pet(
     pet: Pet = Body(None, description="Pet object that needs to be added to the store"),
-    token_petstore_auth: TokenModel = Security(
-        get_token_petstore_auth, scopes=["write:pets", "read:pets"]
-    ),
+    token_petstore_auth: TokenModel = Security(get_token_petstore_auth, scopes=["write:pets", "read:pets"]),
 ) -> Pet:
 
     return processor.pet.add_pet(
@@ -57,9 +55,7 @@ async def add_pet(
 async def delete_pet(
     petId: int = Path(None, description="Pet id to delete"),
     api_key: str = Header(None, description=""),
-    token_petstore_auth: TokenModel = Security(
-        get_token_petstore_auth, scopes=["write:pets", "read:pets"]
-    ),
+    token_petstore_auth: TokenModel = Security(get_token_petstore_auth, scopes=["write:pets", "read:pets"]),
 ) -> None:
 
     return processor.pet.delete_pet(
@@ -80,9 +76,7 @@ async def delete_pet(
 )
 async def find_pets_by_status(
     status: List[str] = Query(None, description="Status values that need to be considered for filter"),
-    token_petstore_auth: TokenModel = Security(
-        get_token_petstore_auth, scopes=["read:pets"]
-    ),
+    token_petstore_auth: TokenModel = Security(get_token_petstore_auth, scopes=["read:pets"]),
 ) -> List[Pet]:
     """Multiple status values can be provided with comma separated strings"""
     return processor.pet.find_pets_by_status(
@@ -102,9 +96,7 @@ async def find_pets_by_status(
 )
 async def find_pets_by_tags(
     tags: List[str] = Query(None, description="Tags to filter by"),
-    token_petstore_auth: TokenModel = Security(
-        get_token_petstore_auth, scopes=["read:pets"]
-    ),
+    token_petstore_auth: TokenModel = Security(get_token_petstore_auth, scopes=["read:pets"]),
 ) -> List[Pet]:
     """Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing."""
     return processor.pet.find_pets_by_tags(
@@ -125,9 +117,7 @@ async def find_pets_by_tags(
 )
 async def get_pet_by_id(
     petId: int = Path(None, description="ID of pet to return"),
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> Pet:
     """Returns a single pet"""
     return processor.pet.get_pet_by_id(
@@ -149,9 +139,7 @@ async def get_pet_by_id(
 )
 async def update_pet(
     pet: Pet = Body(None, description="Pet object that needs to be added to the store"),
-    token_petstore_auth: TokenModel = Security(
-        get_token_petstore_auth, scopes=["write:pets", "read:pets"]
-    ),
+    token_petstore_auth: TokenModel = Security(get_token_petstore_auth, scopes=["write:pets", "read:pets"]),
 ) -> Pet:
 
     return processor.pet.update_pet(
@@ -172,9 +160,7 @@ async def update_pet_with_form(
     petId: int = Path(None, description="ID of pet that needs to be updated"),
     name: str = Form(None, description="Updated name of the pet"),
     status: str = Form(None, description="Updated status of the pet"),
-    token_petstore_auth: TokenModel = Security(
-        get_token_petstore_auth, scopes=["write:pets", "read:pets"]
-    ),
+    token_petstore_auth: TokenModel = Security(get_token_petstore_auth, scopes=["write:pets", "read:pets"]),
 ) -> None:
 
     return processor.pet.update_pet_with_form(
@@ -197,9 +183,7 @@ async def upload_file(
     petId: int = Path(None, description="ID of pet to update"),
     additional_metadata: str = Form(None, description="Additional data to pass to server"),
     file: str = Form(None, description="file to upload"),
-    token_petstore_auth: TokenModel = Security(
-        get_token_petstore_auth, scopes=["write:pets", "read:pets"]
-    ),
+    token_petstore_auth: TokenModel = Security(get_token_petstore_auth, scopes=["write:pets", "read:pets"]),
 ) -> ApiResponse:
 
     return processor.pet.upload_file(

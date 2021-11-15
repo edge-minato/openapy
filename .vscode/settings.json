@@ -29,10 +29,11 @@
   // common
   "cSpell.words": [
     "noqa",
+    "openapi",
+    "openapy",
     "pflake8",
     "pyproject",
-    "venv",
-    "openapy"
+    "venv"
   ],
   "files.exclude": {
     ".coverage": true,

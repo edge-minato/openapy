@@ -33,9 +33,7 @@ router = APIRouter()
 )
 async def create_user(
     user: User = Body(None, description="Created user object"),
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> None:
     """This can only be done by the logged in user."""
     return processor.user.create_user(
@@ -54,9 +52,7 @@ async def create_user(
 )
 async def create_users_with_array_input(
     user: List[User] = Body(None, description="List of user object"),
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> None:
 
     return processor.user.create_users_with_array_input(
@@ -75,9 +71,7 @@ async def create_users_with_array_input(
 )
 async def create_users_with_list_input(
     user: List[User] = Body(None, description="List of user object"),
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> None:
 
     return processor.user.create_users_with_list_input(
@@ -97,9 +91,7 @@ async def create_users_with_list_input(
 )
 async def delete_user(
     username: str = Path(None, description="The name that needs to be deleted"),
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> None:
     """This can only be done by the logged in user."""
     return processor.user.delete_user(
@@ -137,7 +129,9 @@ async def get_user_by_name(
     summary="Logs user into the system",
 )
 async def login_user(
-    username: str = Query(None, description="The user name for login", regex=r"^[a-zA-Z0-9]+[a-zA-Z0-9\.\-_]*[a-zA-Z0-9]+$"),
+    username: str = Query(
+        None, description="The user name for login", regex=r"^[a-zA-Z0-9]+[a-zA-Z0-9\.\-_]*[a-zA-Z0-9]+$"
+    ),
     password: str = Query(None, description="The password for login in clear text"),
 ) -> str:
 
@@ -156,9 +150,7 @@ async def login_user(
     summary="Logs out current logged in user session",
 )
 async def logout_user(
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> None:
 
     return processor.user.logout_user(
@@ -178,9 +170,7 @@ async def logout_user(
 async def update_user(
     username: str = Path(None, description="name that need to be deleted"),
     user: User = Body(None, description="Updated user object"),
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> None:
     """This can only be done by the logged in user."""
     return processor.user.update_user(
