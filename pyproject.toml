@@ -27,7 +27,7 @@ Jinja2 = "^3.0.3"
 types-PyYAML = "^6.0.1"
 
 [tool.poetry.dev-dependencies]
-black = "^21.10b0"
+black = "^21.11b1"
 pyproject-flake8 = "^0.0.1-alpha.2"
 mypy = "^0.910"
 isort = "^5.10.1"
