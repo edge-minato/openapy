@@ -1,5 +1,5 @@
-- name: per_file
-  src:
+- name: key_src_not_found
+  srcccccccccccccccc:
     directory: tests/server/src/openapi_server/apis
     prefix: ''
     suffix: _api.py

@@ -8,4 +8,4 @@
     prefix: prefix_
     suffix: ".py"
   template: tests/template/per_file.j2
-  iter: file
+  iter: func

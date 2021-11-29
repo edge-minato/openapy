@@ -1,4 +1,4 @@
-- name: per_file
+- name: invalid_iter
   src:
     directory: tests/server/src/openapi_server/apis
     prefix: ''
@@ -8,4 +8,4 @@
     prefix: prefix_
     suffix: ".py"
   template: tests/template/per_file.j2
-  iter: file
+  iter: INVALID_ITER

@@ -24,6 +24,7 @@ classifiers = [
 python = "^3.7"
 single-source = "^0.2.0"
 Jinja2 = "^3.0.3"
+types-PyYAML = "^6.0.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"

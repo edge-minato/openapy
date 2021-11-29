@@ -1,6 +1,6 @@
-- name: per_file
+- name: src_dir_not_found
   src:
-    directory: tests/server/src/openapi_server/apis
+    directory: SRC_DOES_NOT_EXIST
     prefix: ''
     suffix: _api.py
   dst:
