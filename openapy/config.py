@@ -23,7 +23,6 @@ class SourceConfig:
 @dataclass
 class DestinationConfig:
     directory: Path
-    tag: str
 
     def __post_init__(self) -> None:
         self.directory.mkdir(exist_ok=True)
@@ -35,5 +34,5 @@ class DestinationConfig:
 class Config:
     def __init__(self, src: Path, tag: str, generate_all: bool):
         self.source_config = SourceConfig(src, [])
-        self.destination_config = DestinationConfig(src.parent.joinpath("processor"), tag)
+        self.destination_config = DestinationConfig(src.parent.joinpath(f"processor_{tag}"))
         self.generate_all = generate_all

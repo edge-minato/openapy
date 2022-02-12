@@ -32,19 +32,19 @@ def test_source_config_error() -> None:
 
 def test_destination_config_default() -> None:
     # when dest dir does exist
-    dc = DestinationConfig(HERE, "tag")
+    dc = DestinationConfig(HERE)
     path = dc.get_output_file_path("function")
     assert path == HERE.joinpath("process_function.py")
 
     # when dest dir does not exist
     assert not TEMP_PROCESSOR_DIR.is_dir()
-    dc = DestinationConfig(TEMP_PROCESSOR_DIR, "tag")
+    dc = DestinationConfig(TEMP_PROCESSOR_DIR)
     assert TEMP_PROCESSOR_DIR.is_dir()
     path = dc.get_output_file_path("function")
     assert path == TEMP_PROCESSOR_DIR.joinpath("process_function.py")
 
 
 def test_config() -> None:
-    c = Config(SAMPLE_APIS.joinpath("custom"), "tag", True)
+    c = Config(SAMPLE_APIS.joinpath("custom"), "custom", True)
     files = c.source_config.get_files()
     assert len(files) == 4
