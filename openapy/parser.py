@@ -1,18 +1,19 @@
 from ast import unparse  # type: ignore
-from ast import Assign, AsyncFunctionDef, FunctionDef, Import, ImportFrom
+from ast import AnnAssign, Assign, AsyncFunctionDef, FunctionDef, Import, ImportFrom
 from ast import parse as ast_parse
 from pathlib import Path
 from typing import List, Union
 
 Functions = Union[FunctionDef, AsyncFunctionDef]
 Imports = Union[ImportFrom, Import]
+Assigns = Union[Assign, AnnAssign]
 
 
 class ParsedPythonFile:
     def __init__(self) -> None:
         self.imports: List[Imports] = []
         self.functions: List[Functions] = []
-        self.assigns: List[Assign] = []
+        self.assigns: List[Assigns] = []
 
     def get_imports_str(self) -> str:
         return "\n".join([unparse(i) for i in self.imports])
@@ -31,7 +32,7 @@ def parse(src_file: Path) -> ParsedPythonFile:
                 ppf.imports.append(component)
             elif isinstance(component, (AsyncFunctionDef, FunctionDef)):
                 ppf.functions.append(component)
-            elif isinstance(component, Assign):
+            elif isinstance(component, (Assign, AnnAssign)):
                 ppf.assigns.append(component)
             else:
                 print(f"Unexpected component was found: {type(component)}")

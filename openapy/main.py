@@ -11,7 +11,7 @@ from openapy.template import TEMPLATE
 def main() -> None:
     args = get_args()
     src = Path(args.src)
-    config = Config(src, args.tag, args.all)
+    config = Config(src, args.tag, args.all, args.indent)
     src_files = config.source_config.get_files()
     for src in src_files:
         ppf = parse(src)

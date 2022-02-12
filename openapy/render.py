@@ -1,4 +1,4 @@
-from ast import AsyncFunctionDef, Expr, FunctionDef, Return, unparse
+from ast import Assign, AsyncFunctionDef, Expr, FunctionDef, Return, unparse  # type: ignore
 from typing import Union
 
 FunctionType = Union[AsyncFunctionDef, FunctionDef]
@@ -39,12 +39,12 @@ class Function:
         self.name = function.name
         self.return_type = unparse(function.returns)
         self.args = unparse(function.args)
-        self.comments = "\n".join([f'"""{c.value.value}"""' for c in function.body if isinstance(c, Expr)])
-        self.body = "\n".join(
+        self.comments = "\n    ".join([f'"""{c.value.value}"""' for c in function.body if isinstance(c, Expr)])  # type: ignore # noqa: E501
+        self.body = "\n    ".join(
             [unparse(body) for body in function.body if (not isinstance(body, Expr) and not isinstance(body, Return))]
         )
         self.returns = "\n".join([unparse(ret) for ret in function.body if isinstance(ret, Return)])
 
         for body in function.body:
-            if not isinstance(body, (Expr, Return)):
+            if not isinstance(body, (Assign, Expr, Return)):
                 print(body)
