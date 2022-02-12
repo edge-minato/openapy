@@ -1,0 +1,11 @@
+.github
+.tox
+.venv
+.vscode
+tests
+.gitignore
+.pre-commit-config.yaml
+.python-version
+LICENSE
+Makefile
+README.md
