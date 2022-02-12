@@ -98,11 +98,11 @@ commands =
     poetry install -vv --no-root
     pytest ./tests -v -s --cov=openapy --cov-branch --durations=0
 [testenv:flake8]
-commands = poetry run pflake8 --statistics ./openapy ./tests
+commands = poetry run pflake8 --statistics ./openapy
 [testenv:black]
-commands = poetry run black ./openapy ./tests
+commands = poetry run black ./openapy
 [testenv:mypy]
-commands = poetry run mypy ./openapy ./tests
+commands = poetry run mypy ./openapy
 [testenv:isort]
-commands = poetry run isort ./openapy ./tests
+commands = poetry run isort ./openapy
 """

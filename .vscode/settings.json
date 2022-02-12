@@ -40,7 +40,7 @@
     ".coverage": true,
     ".mypy_cache": true,
     ".pytest_cache": true,
-    ".tox": true,
+    ".tox": false,
     ".venv": false
   }
 }
