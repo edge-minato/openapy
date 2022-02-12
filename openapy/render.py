@@ -1,13 +1,13 @@
-from ast import Assign, AsyncFunctionDef, Expr, FunctionDef, Return, unparse  # type: ignore
-from typing import Union
+from ast import AsyncFunctionDef, Expr, Return, unparse  # type: ignore
+from typing import List
 
-FunctionType = Union[AsyncFunctionDef, FunctionDef]
+from openapy.parser import TypeAssigns, TypeFunctions, TypeImports
 
 
 class FilePerFunction:
-    def __init__(self, imports: str, assigns: str, function: FunctionType) -> None:
-        self.imports: str = imports
-        self.assigns: str = assigns
+    def __init__(self, imports: List[TypeImports], assigns: List[TypeAssigns], function: TypeFunctions) -> None:
+        self.imports: str = Import(imports).unparsed
+        self.assigns: str = Assign(assigns).unparsed
         func: Function = Function(function)
         self.definition = func.definition
         self.name = func.name
@@ -31,8 +31,18 @@ class FilePerFunction:
         )
 
 
+class Assign:
+    def __init__(self, assigns: List[TypeAssigns]) -> None:
+        self.unparsed = "\n".join([unparse(a) for a in assigns])
+
+
+class Import:
+    def __init__(self, imports: List[TypeImports]) -> None:
+        self.unparsed = "\n".join([unparse(i) for i in imports])
+
+
 class Function:
-    def __init__(self, function: FunctionType) -> None:
+    def __init__(self, function: TypeFunctions) -> None:
         function.decorator_list = []
         function.args.defaults = []
         self.definition = "async def" if isinstance(function, AsyncFunctionDef) else "def"

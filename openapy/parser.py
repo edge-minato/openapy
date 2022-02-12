@@ -1,25 +1,18 @@
-from ast import unparse  # type: ignore
 from ast import AnnAssign, Assign, AsyncFunctionDef, FunctionDef, Import, ImportFrom
 from ast import parse as ast_parse
 from pathlib import Path
 from typing import List, Union
 
-Functions = Union[FunctionDef, AsyncFunctionDef]
-Imports = Union[ImportFrom, Import]
-Assigns = Union[Assign, AnnAssign]
+TypeFunctions = Union[FunctionDef, AsyncFunctionDef]
+TypeImports = Union[ImportFrom, Import]
+TypeAssigns = Union[Assign, AnnAssign]
 
 
 class ParsedPythonFile:
     def __init__(self) -> None:
-        self.imports: List[Imports] = []
-        self.functions: List[Functions] = []
-        self.assigns: List[Assigns] = []
-
-    def get_imports_str(self) -> str:
-        return "\n".join([unparse(i) for i in self.imports])
-
-    def get_assigns_str(self) -> str:
-        return "\n".join([unparse(a) for a in self.assigns])
+        self.imports: List[TypeImports] = []
+        self.functions: List[TypeFunctions] = []
+        self.assigns: List[TypeAssigns] = []
 
 
 def parse(src_file: Path) -> ParsedPythonFile:

@@ -15,11 +15,9 @@ def main() -> None:
     src_files = config.source_config.get_files()
     for src in src_files:
         ppf = parse(src)
-        imports = ppf.get_imports_str()
-        assigns = ppf.get_assigns_str()
         for function in ppf.functions:
             name = function.name
-            fpf = FilePerFunction(imports, assigns, function)
+            fpf = FilePerFunction(ppf.imports, ppf.assigns, function)
             rendered = fpf.render(TEMPLATE)
             output_file_path = config.destination_config.get_output_file_path(name)
             write_file(output_file_path, rendered)
