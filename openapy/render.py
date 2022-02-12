@@ -1,3 +1,4 @@
+import ast
 from ast import AsyncFunctionDef, Expr, Return, unparse  # type: ignore
 from typing import List
 
@@ -63,5 +64,5 @@ class Function:
         self.returns = "\n".join([unparse(ret) for ret in function.body if isinstance(ret, Return)])
 
         for body in function.body:
-            if not isinstance(body, (Assign, Expr, Return)):
+            if not isinstance(body, (ast.Assign, Expr, Return)):
                 print(body)

@@ -25,7 +25,6 @@ class DestinationConfig:
     directory: Path
 
     def __post_init__(self) -> None:
-        print(self.directory)
         self.directory.mkdir(exist_ok=True)
 
     def get_output_file_path(self, function_name: str) -> Path:
