@@ -35,16 +35,16 @@ jobs:
         run: poetry run pytest ./tests -v --cov=openapy --cov-branch --cov-report=xml
 
       - name: Test with linter
-        run: poetry run pflake8 --statistics ./openapy ./tests
+        run: poetry run pflake8 --statistics ./openapy
 
       - name: Test with formatter
-        run: poetry run black ./openapy ./tests
+        run: poetry run black ./openapy
 
       - name: Test with type checker
-        run: poetry run mypy ./openapy ./tests
+        run: poetry run mypy ./openapy
 
       - name: Test with import sorter
-        run: poetry run isort ./openapy ./tests
+        run: poetry run isort ./openapy
 
       - name: Upload coverage to Codecov
         if: ${{ matrix.python-version==3.10 }}
