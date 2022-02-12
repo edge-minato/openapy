@@ -2,5 +2,5 @@
 
 {IMPORTS}
 
-{DEF} {NAME}({ARGS}) -> {RETURN_TYPE}:
+def process_{NAME}({ARGS}) -> {RETURN_TYPE}:
     ...

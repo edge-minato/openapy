@@ -32,8 +32,7 @@ class DestinationConfig:
 
 
 class Config:
-    def __init__(self, src: Path, tag: str, generate_all: bool, indent_space: int = 4):
+    def __init__(self, src: Path, tag: str, generate_all: bool):
         self.source_config = SourceConfig(src, [])
         self.destination_config = DestinationConfig(src.parent.joinpath("processor"))
         self.generate_all = generate_all
-        self.indent_space = indent_space
