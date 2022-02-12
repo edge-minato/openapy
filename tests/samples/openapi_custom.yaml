@@ -584,7 +584,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/requestBodies'
+            $ref: '#/components/schemas/Pet'
         application/xml:
           schema:
             $ref: '#/components/schemas/Pet'

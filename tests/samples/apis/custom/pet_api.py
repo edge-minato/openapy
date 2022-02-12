@@ -38,13 +38,14 @@ responses_add_pet: responce_type = {
     summary="Add a new pet to the store",
 )
 async def add_pet(
-    body:  = Body(None, description="Pet object that needs to be added to the store"),
+    pet: Pet = Body(None, description="Pet object that needs to be added to the store"),
     token_petstore_auth: TokenModel = Security(
         get_token_petstore_auth, scopes=["write:pets", "read:pets"]
     ),
 ) -> Pet:
+    
     return processor.pet.add_pet(
-        body,
+        pet,
         token_petstore_auth,
     )
 
@@ -67,6 +68,7 @@ async def delete_pet(
         get_token_petstore_auth, scopes=["write:pets", "read:pets"]
     ),
 ) -> None:
+    
     return processor.pet.delete_pet(
         petId,
         api_key,
@@ -92,7 +94,8 @@ async def find_pets_by_status(
         get_token_petstore_auth, scopes=["read:pets"]
     ),
 ) -> List[Pet]:
-    """Multiple status values can be provided with comma separated strings"""return processor.pet.find_pets_by_status(
+    """Multiple status values can be provided with comma separated strings"""
+    return processor.pet.find_pets_by_status(
         status,
         token_petstore_auth,
     )
@@ -116,7 +119,8 @@ async def find_pets_by_tags(
         get_token_petstore_auth, scopes=["read:pets"]
     ),
 ) -> List[Pet]:
-    """Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing."""return processor.pet.find_pets_by_tags(
+    """Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing."""
+    return processor.pet.find_pets_by_tags(
         tags,
         token_petstore_auth,
     )
@@ -141,7 +145,8 @@ async def get_pet_by_id(
         get_token_api_key
     ),
 ) -> Pet:
-    """Returns a single pet"""return processor.pet.get_pet_by_id(
+    """Returns a single pet"""
+    return processor.pet.get_pet_by_id(
         petId,
         token_api_key,
     )
@@ -162,13 +167,14 @@ responses_update_pet: responce_type = {
     summary="Update an existing pet",
 )
 async def update_pet(
-    body:  = Body(None, description="Pet object that needs to be added to the store"),
+    pet: Pet = Body(None, description="Pet object that needs to be added to the store"),
     token_petstore_auth: TokenModel = Security(
         get_token_petstore_auth, scopes=["write:pets", "read:pets"]
     ),
 ) -> Pet:
+    
     return processor.pet.update_pet(
-        body,
+        pet,
         token_petstore_auth,
     )
 
@@ -192,6 +198,7 @@ async def update_pet_with_form(
         get_token_petstore_auth, scopes=["write:pets", "read:pets"]
     ),
 ) -> None:
+    
     return processor.pet.update_pet_with_form(
         petId,
         name,
@@ -219,6 +226,7 @@ async def upload_file(
         get_token_petstore_auth, scopes=["write:pets", "read:pets"]
     ),
 ) -> ApiResponse:
+    
     return processor.pet.upload_file(
         petId,
         additional_metadata,

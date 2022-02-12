@@ -41,7 +41,8 @@ async def create_user(
         get_token_api_key
     ),
 ) -> None:
-    """This can only be done by the logged in user."""return processor.user.create_user(
+    """This can only be done by the logged in user."""
+    return processor.user.create_user(
         user,
         token_api_key,
     )
@@ -64,6 +65,7 @@ async def create_users_with_array_input(
         get_token_api_key
     ),
 ) -> None:
+    
     return processor.user.create_users_with_array_input(
         user,
         token_api_key,
@@ -87,6 +89,7 @@ async def create_users_with_list_input(
         get_token_api_key
     ),
 ) -> None:
+    
     return processor.user.create_users_with_list_input(
         user,
         token_api_key,
@@ -111,7 +114,8 @@ async def delete_user(
         get_token_api_key
     ),
 ) -> None:
-    """This can only be done by the logged in user."""return processor.user.delete_user(
+    """This can only be done by the logged in user."""
+    return processor.user.delete_user(
         username,
         token_api_key,
     )
@@ -133,6 +137,7 @@ responses_get_user_by_name: responce_type = {
 async def get_user_by_name(
     username: str = Path(None, description="The name that needs to be fetched. Use user1 for testing."),
 ) -> User:
+    
     return processor.user.get_user_by_name(
         username,
     )
@@ -154,6 +159,7 @@ async def login_user(
     username: str = Query(None, description="The user name for login", regex=r"^[a-zA-Z0-9]+[a-zA-Z0-9\.\-_]*[a-zA-Z0-9]+$"),
     password: str = Query(None, description="The password for login in clear text"),
 ) -> str:
+    
     return processor.user.login_user(
         username,
         password,
@@ -176,6 +182,7 @@ async def logout_user(
         get_token_api_key
     ),
 ) -> None:
+    
     return processor.user.logout_user(
         token_api_key,
     )
@@ -200,7 +207,8 @@ async def update_user(
         get_token_api_key
     ),
 ) -> None:
-    """This can only be done by the logged in user."""return processor.user.update_user(
+    """This can only be done by the logged in user."""
+    return processor.user.update_user(
         username,
         user,
         token_api_key,

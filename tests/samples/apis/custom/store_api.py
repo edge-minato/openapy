@@ -39,7 +39,8 @@ responses_delete_order: responce_type = {
 async def delete_order(
     orderId: str = Path(None, description="ID of the order that needs to be deleted"),
 ) -> None:
-    """For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors"""return processor.store.delete_order(
+    """For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors"""
+    return processor.store.delete_order(
         orderId,
     )
 
@@ -60,7 +61,8 @@ async def get_inventory(
         get_token_api_key
     ),
 ) -> Dict[str, int]:
-    """Returns a map of status codes to quantities"""return processor.store.get_inventory(
+    """Returns a map of status codes to quantities"""
+    return processor.store.get_inventory(
         token_api_key,
     )
 
@@ -81,7 +83,8 @@ responses_get_order_by_id: responce_type = {
 async def get_order_by_id(
     orderId: int = Path(None, description="ID of pet that needs to be fetched", ge=1, le=5),
 ) -> Order:
-    """For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions"""return processor.store.get_order_by_id(
+    """For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions"""
+    return processor.store.get_order_by_id(
         orderId,
     )
 
@@ -101,6 +104,7 @@ responses_place_order: responce_type = {
 async def place_order(
     order: Order = Body(None, description="order placed for purchasing the pet"),
 ) -> Order:
+    
     return processor.store.place_order(
         order,
     )

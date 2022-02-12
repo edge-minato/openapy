@@ -34,7 +34,7 @@ router = APIRouter()
     summary="Add a new pet to the store",
 )
 async def add_pet(
-    body:  = Body(None, description="Pet object that needs to be added to the store"),
+    pet: Pet = Body(None, description="Pet object that needs to be added to the store"),
     token_petstore_auth: TokenModel = Security(
         get_token_petstore_auth, scopes=["write:pets", "read:pets"]
     ),
@@ -130,7 +130,7 @@ async def get_pet_by_id(
     summary="Update an existing pet",
 )
 async def update_pet(
-    body:  = Body(None, description="Pet object that needs to be added to the store"),
+    pet: Pet = Body(None, description="Pet object that needs to be added to the store"),
     token_petstore_auth: TokenModel = Security(
         get_token_petstore_auth, scopes=["write:pets", "read:pets"]
     ),

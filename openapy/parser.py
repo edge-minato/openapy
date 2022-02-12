@@ -10,7 +10,7 @@ Imports = Union[ImportFrom, Import]
 
 class ParsedPythonFile:
     def __init__(self) -> None:
-        self.imports: List[Imports] = []  # TODO: add pure Import
+        self.imports: List[Imports] = []
         self.functions: List[Functions] = []
         self.assigns: List[Assign] = []
 

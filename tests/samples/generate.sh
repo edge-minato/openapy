@@ -3,15 +3,15 @@
 set -eu
 cd `dirname $0`
 
-
+OPENAPI_IMAGE_TAG="v5.4.0"
 OPENAPI_TAG="custom"
 OPENAPI_IMAGE="openapitools/openapi-generator-cli"
 GENERATOR="python-fastapi"
-APISPEC_YAML="openapi.yaml"
+APISPEC_YAML="openapi_${OPENAPI_TAG}.yaml"
 
 function generate(){
     docker run --rm -v ${PWD}:/local \
-    ${OPENAPI_IMAGE}:${OPENAPI_TAG} generate \
+    ${OPENAPI_IMAGE}:${OPENAPI_IMAGE_TAG} generate \
     -i /local/${APISPEC_YAML} \
     -g ${GENERATOR} \
     -t /local/mustache/${OPENAPI_TAG} \
