@@ -1,54 +1,50 @@
 import pytest
 
-from openapy.config import DestinationConfig, SourceConfig, get_Config
-from tests.conftest import CONFIG_DIR, DST_DIR, SRC_APIS_DIR, log
+from openapy.config import Config, DestinationConfig, SourceConfig
+from tests.conftest import DIR_NOT_FOUND, HERE, SAMPLE_APIS, TEMP_PROCESSOR_DIR
 
 
 def test_source_config_default() -> None:
-    sc = SourceConfig(SRC_APIS_DIR, "", "_api.py")
-    target_files = sc.get_files()
-    core_names = [tf.core_name for tf in target_files]
-    log(core_names)
-    assert len(target_files) == 3
-    assert "pet" in core_names
-    assert "store" in core_names
-    assert "user" in core_names
+    sc = SourceConfig(SAMPLE_APIS.joinpath("custom"), ignore=[])
+    files = [file.name for file in sc.get_files()]
+    expect_files = ["__init__.py", "pet_api.py", "store_api.py", "user_api.py"]
+    for exp in expect_files:
+        assert exp in files
 
 
-def test_source_config_with_prefix() -> None:
-    sc = SourceConfig(SRC_APIS_DIR, "pet_", ".py")
-    target_files = sc.get_files()
-    core_names = [tf.core_name for tf in target_files]
-    log(core_names)
-    assert len(target_files) == 1
-    assert "api" in core_names
+def test_source_config_ignore() -> None:
+    ignore_files = ["__init__.py", "abc.py"]
+    expect_files = ["pet_api.py", "store_api.py", "user_api.py"]
+
+    sc = SourceConfig(SAMPLE_APIS.joinpath("custom"), ignore=ignore_files)
+    files = [file.name for file in sc.get_files()]
+    for exp in expect_files:
+        assert exp in files
+    for ignore in ignore_files:
+        assert ignore not in files
 
 
-def test_source_config_for_all() -> None:
-    sc = SourceConfig(SRC_APIS_DIR, "", "")
-    target_files = sc.get_files()
-    core_names = [tf.core_name for tf in target_files]
-    log(core_names)
-    assert len(target_files) == 4
+def test_source_config_error() -> None:
+    with pytest.raises(SystemExit) as e:
+        _ = SourceConfig(DIR_NOT_FOUND, ignore=[])
+        assert e.value.code == 1  # type: ignore
 
 
 def test_destination_config_default() -> None:
-    dc = DestinationConfig(DST_DIR, "process_", ".py")
-    target_files = ["a", "b", "c"]
-    for target_file in target_files:
-        assert DST_DIR.joinpath("process_" + target_file + ".py") == dc.get_output_file_path(target_file)
+    # when dest dir does exist
+    dc = DestinationConfig(HERE, "tag")
+    path = dc.get_output_file_path("function")
+    assert path == HERE.joinpath("process_function.py")
+
+    # when dest dir does not exist
+    assert not TEMP_PROCESSOR_DIR.is_dir()
+    dc = DestinationConfig(TEMP_PROCESSOR_DIR, "tag")
+    assert TEMP_PROCESSOR_DIR.is_dir()
+    path = dc.get_output_file_path("function")
+    assert path == TEMP_PROCESSOR_DIR.joinpath("process_function.py")
 
 
-def test_config_default() -> None:
-    config_file = CONFIG_DIR.joinpath("example.yml")
-    c = get_Config(config_file)
-    assert c[0].name == "example_name"
-    assert c[1].name == "per_file"
-
-
-def test_invalid_config() -> None:
-    for i in [1, 2, 3]:
-        with pytest.raises(SystemExit) as e:
-            invalid_config_file = CONFIG_DIR.joinpath(f"invalid_{i}.yml")
-            _ = get_Config(invalid_config_file)
-            assert e.value.code == 1  # type: ignore
+def test_config() -> None:
+    c = Config(SAMPLE_APIS.joinpath("custom"), "tag", True)
+    files = c.source_config.get_files()
+    assert len(files) == 4

@@ -13,18 +13,15 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: Unix",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 single-source = "^0.2.0"
 Jinja2 = "^3.0.3"
-types-PyYAML = "^6.0.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"
@@ -38,6 +35,7 @@ pytest-cov = "^3.0.0"
 pytest-mock = "^3.6.1"
 tox-gh-actions = "^2.8.1"
 pre-commit = "^2.15.0"
+types-PyYAML = "^6.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -88,7 +86,7 @@ line_length = 119
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py37, py38, py39, py310, flake8, black, mypy, isort
+envlist =  py39, py310, flake8, black, mypy, isort
 skipsdist = true
 isolated_build = true
 skip_missing_interpreters = true

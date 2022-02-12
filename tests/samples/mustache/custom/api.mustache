@@ -1,0 +1,76 @@
+# coding: utf-8
+
+from typing import Any, Dict, List, Optional, Union # noqa: F401
+
+from fastapi import (  # noqa: F401
+    APIRouter,
+    Body,
+    Cookie,
+    Depends,
+    Form,
+    Header,
+    Path,
+    Query,
+    Response,
+    Security,
+    status,
+)
+
+from {{packageName}} import processor
+from {{modelPackage}}.extra_models import TokenModel  # noqa: F401
+{{#imports}}
+{{import}}
+{{/imports}}
+{{#securityImports.0}}from {{packageName}}.security_api import {{#securityImports}}get_token_{{.}}{{^-last}}, {{/-last}}{{/securityImports}}{{/securityImports.0}}
+
+router = APIRouter()
+responce_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
+
+{{#operations}}
+{{#operation}}
+
+# {{operationId}} ########################################################################
+responses_{{operationId}}: responce_type = {
+    {{#responses}}
+    {{code}}: {{=<% %>=}}{<%#dataType%>"model": <%dataType%>, "description": "<%message%>"<%/dataType%><%^dataType%>"description": "<%message%>"<%/dataType%>}<%={{ }}=%>,
+    {{/responses}}
+}
+@router.{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}(
+    "{{path}}",
+    responses=responses_{{operationId}},
+    tags=[{{#tags}}"{{name}}"{{^-last}},{{/-last}}{{/tags}}],
+    {{#summary}}
+    summary="{{.}}",
+    {{/summary}}
+    {{#description}}
+    description = "{{.}}",
+    {{/description}}
+)
+async def {{operationId}}(
+    {{#allParams}}
+    {{>endpoint_argument_definition}},
+    {{/allParams}}
+    {{#hasAuthMethods}}
+    {{#authMethods}}
+    token_{{name}}: TokenModel = Security(
+        get_token_{{name}}{{#isOAuth}}, scopes=[{{#scopes}}"{{scope}}"{{^-last}}, {{/-last}}{{/scopes}}]{{/isOAuth}}
+    ),
+    {{/authMethods}}
+    {{/hasAuthMethods}}
+) -> {{returnType}}{{^returnType}}None{{/returnType}}:
+    {{#notes}}"""{{.}}"""{{/notes}}{{^notes}}{{/notes}}return processor.{{#tags}}{{#-first}}{{name}}{{/-first}}{{/tags}}.{{operationId}}(
+        {{#allParams}}
+        {{>return_params}},
+        {{/allParams}}
+        {{#hasAuthMethods}}
+        {{#authMethods}}
+        token_{{name}},
+        {{/authMethods}}
+        {{/hasAuthMethods}}
+    )
+{{^-last}}
+
+
+{{/-last}}
+{{/operation}}
+{{/operations}}
