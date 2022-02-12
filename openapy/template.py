@@ -2,7 +2,20 @@ from enum import Enum
 from pathlib import Path
 from typing import Optional
 
+from single_source import get_version
+
 from openapy.io import exit_with_error
+
+GITHUB = "https://github.com/edge-minato/openapy"
+VERSION = get_version(__name__, Path(__file__).parent.parent)
+LOGO = """
+ ██████╗ ██████╗ ███████╗███╗   ██╗ █████╗ ██████╗ ██╗   ██╗
+██╔═══██╗██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔══██╗╚██╗ ██╔╝
+██║   ██║██████╔╝█████╗  ██╔██╗ ██║███████║██████╔╝ ╚████╔╝
+██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║██╔══██║██╔═══╝   ╚██╔╝
+╚██████╔╝██║     ███████╗██║ ╚████║██║  ██║██║        ██║
+ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝        ╚═╝\
+"""  # noqa: W291
 
 TEMPLATE = """
 # coding: utf-8

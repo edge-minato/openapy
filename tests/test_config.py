@@ -45,6 +45,6 @@ def test_destination_config_default() -> None:
 
 
 def test_config() -> None:
-    c = Config(EXAMPLE_APIS_DIR("custom"), "custom", True)
+    c = Config(EXAMPLE_APIS_DIR("custom"), True)
     files = c.source_config.get_files()
     assert len(files) == 4

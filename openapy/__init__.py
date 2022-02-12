@@ -1,5 +1,3 @@
-from pathlib import Path
+from openapy.template import VERSION
 
-from single_source import get_version
-
-__version__ = get_version(__name__, Path(__file__).parent.parent)
+__version__ = VERSION

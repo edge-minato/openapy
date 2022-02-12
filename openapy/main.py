@@ -22,7 +22,7 @@ def render_file(file: Path, dc: DestinationConfig, template: str) -> None:
 def main() -> None:
     args = get_args()
     template = get_template(args.template)
-    config = Config(Path(args.src), args.tag, args.all)
+    config = Config(Path(args.src), args.all)
     # iterate each source files
     for file in config.source_config.get_files():
         render_file(file, config.destination_config, template)

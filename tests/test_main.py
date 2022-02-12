@@ -10,9 +10,9 @@ from tests.conftest import EXAMPLE_APIS_DIR, EXAMPLES_DIR, TARGET_VERSION
 class MockArgParser:
     def __init__(self, version: str, template: Optional[str] = None) -> None:
         self.src = EXAMPLE_APIS_DIR(version)
-        self.tag = version
         self.all = True
         self.template = template
+        self.version = False
 
 
 def test_main(mocker: MockFixture) -> None:
