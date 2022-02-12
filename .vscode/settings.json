@@ -34,6 +34,7 @@
     "openapy",
     "pflake8",
     "pyproject",
+    "unparse",
     "venv"
   ],
   "files.exclude": {

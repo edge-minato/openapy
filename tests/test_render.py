@@ -62,7 +62,7 @@ def func_name(arg1: str, arg2: int) -> str:
 
 
 def test_import() -> None:
-    imports = Import(parsed_imports)  # type: ignore
+    imports = Import(parsed_imports, "")  # type: ignore
     assert imports.unparsed == example_imports
 
 
@@ -83,5 +83,5 @@ def test_function() -> None:
 
 
 def test_file_per_function() -> None:
-    fpf = FilePerFunction(parsed_imports, parsed_assigns, parsed_func)  # type: ignore
+    fpf = FilePerFunction(parsed_imports, parsed_assigns, parsed_func, "")  # type: ignore
     assert expect_rendered == fpf.render(template)

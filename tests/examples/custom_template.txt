@@ -1,0 +1,6 @@
+# coding: utf-8
+
+{IMPORTS}
+
+{DEF} {NAME}({ARGS}) -> {RETURN_TYPE}:
+    ...

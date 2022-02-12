@@ -17,8 +17,8 @@ function generate(){
     -t /local/mustache/${OPENAPI_TAG} \
     -o /local/apis/tmp
     sudo chown ${USER}:${USER} apis/tmp/src/openapi_server/apis -R
-    mkdir -pv apis/${OPENAPI_TAG}
-    sudo mv apis/tmp/src/openapi_server/apis/* apis/${OPENAPI_TAG}
+    mkdir -pv ${OPENAPI_TAG}/apis
+    sudo mv apis/tmp/src/openapi_server/apis/* ${OPENAPI_TAG}/apis
     sudo rm -rf apis/tmp
 }
 

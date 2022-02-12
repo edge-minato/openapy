@@ -1,11 +1,11 @@
 import pytest
 
 from openapy.config import Config, DestinationConfig, SourceConfig
-from tests.conftest import DIR_NOT_FOUND, HERE, SAMPLE_APIS, TEMP_PROCESSOR_DIR
+from tests.conftest import DIR_NOT_FOUND, EXAMPLE_APIS_DIR, HERE, TEMP_PROCESSOR_DIR
 
 
 def test_source_config_default() -> None:
-    sc = SourceConfig(SAMPLE_APIS.joinpath("custom"), ignore=[])
+    sc = SourceConfig(EXAMPLE_APIS_DIR("custom"), ignore=[])
     files = [file.name for file in sc.get_files()]
     expect_files = ["__init__.py", "pet_api.py", "store_api.py", "user_api.py"]
     for exp in expect_files:
@@ -16,7 +16,7 @@ def test_source_config_ignore() -> None:
     ignore_files = ["__init__.py", "abc.py"]
     expect_files = ["pet_api.py", "store_api.py", "user_api.py"]
 
-    sc = SourceConfig(SAMPLE_APIS.joinpath("custom"), ignore=ignore_files)
+    sc = SourceConfig(EXAMPLE_APIS_DIR("custom"), ignore=ignore_files)
     files = [file.name for file in sc.get_files()]
     for exp in expect_files:
         assert exp in files
@@ -45,6 +45,6 @@ def test_destination_config_default() -> None:
 
 
 def test_config() -> None:
-    c = Config(SAMPLE_APIS.joinpath("custom"), "custom", True)
+    c = Config(EXAMPLE_APIS_DIR("custom"), "custom", True)
     files = c.source_config.get_files()
     assert len(files) == 4

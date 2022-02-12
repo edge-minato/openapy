@@ -1,12 +1,17 @@
+from enum import Enum
+
 TEMPLATE = """
 # coding: utf-8
 
 {IMPORTS}
 
-{ASSIGNS}
-
-{DEF} {NAME}({ARGS}) -> {RETURN_TYPE}:
+{DEF} process_{NAME}({ARGS}) -> {RETURN_TYPE}:
     {COMMENT}
-    {BODY}
+    # implement me
     ...
 """
+
+
+class NOQA(Enum):
+    # The space at head is intended
+    F401 = " # noqa: F401"

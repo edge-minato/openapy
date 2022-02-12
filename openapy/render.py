@@ -2,11 +2,18 @@ from ast import AsyncFunctionDef, Expr, Return, unparse  # type: ignore
 from typing import List
 
 from openapy.parser import TypeAssigns, TypeFunctions, TypeImports
+from openapy.template import NOQA
 
 
 class FilePerFunction:
-    def __init__(self, imports: List[TypeImports], assigns: List[TypeAssigns], function: TypeFunctions) -> None:
-        self.imports: str = Import(imports).unparsed
+    def __init__(
+        self,
+        imports: List[TypeImports],
+        assigns: List[TypeAssigns],
+        function: TypeFunctions,
+        import_suffix: str = NOQA.F401.value,
+    ) -> None:
+        self.imports: str = Import(imports, import_suffix).unparsed
         self.assigns: str = Assign(assigns).unparsed
         func: Function = Function(function)
         self.definition = func.definition
@@ -37,8 +44,8 @@ class Assign:
 
 
 class Import:
-    def __init__(self, imports: List[TypeImports]) -> None:
-        self.unparsed = "\n".join([unparse(i) for i in imports])
+    def __init__(self, imports: List[TypeImports], suffix: str) -> None:
+        self.unparsed = "\n".join([f"{unparse(i)}{suffix}" for i in imports])
 
 
 class Function:

@@ -11,12 +11,9 @@ TARGET_VERSION = ["custom", "v5.2.1", "v5.3.1", "v5.4.0"]
 HERE = TESTS_DIR = Path(__file__).absolute().parent
 REPO_DIR = TESTS_DIR.parent
 
-SAMPLES_DIR = TESTS_DIR.joinpath("samples")
-SAMPLE_APIS = SAMPLES_DIR.joinpath("apis")
-SAMPLE_MUSTACHES = SAMPLES_DIR.joinpath("mustache")
-SAMPLE_EXPECTS = SAMPLES_DIR.joinpath("expects")
-SAMPLE_PROCESSOR_DIR = SAMPLES_DIR.joinpath("processor")
-
+EXAMPLES_DIR = TESTS_DIR.joinpath("examples")
+EXAMPLE_MUSTACHES = EXAMPLES_DIR.joinpath("mustache")
+EXAMPLE_EXPECTS = EXAMPLES_DIR.joinpath("expects")
 TEMP_DIR = HERE.joinpath("tmp")
 TEMP_PROCESSOR_DIR = TEMP_DIR.joinpath("processor")
 
@@ -45,9 +42,13 @@ def scope_session() -> Generator:
     yield
     remove_tmp_dir(tmp)
     for version in TARGET_VERSION:
-        remove_tmp_dir(SAMPLE_APIS.joinpath(f"processor_{version}"))
+        remove_tmp_dir(EXAMPLES_DIR.joinpath(version).joinpath("processor"))
     print("\nteardown after session")
 
 
 def log(log) -> None:  # type: ignore
     print(f"\n  {log}")
+
+
+def EXAMPLE_APIS_DIR(version: str) -> Path:
+    return EXAMPLES_DIR.joinpath(version).joinpath("apis")

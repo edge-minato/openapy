@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from typing import Any, Dict, List, Optional, Union # noqa: F401
+from typing import Any, Dict, List, Optional, Union  # noqa: F401
 
 from fastapi import (  # noqa: F401
     APIRouter,
@@ -15,7 +15,6 @@ from fastapi import (  # noqa: F401
     Security,
     status,
 )
-
 from openapi_server import processor
 from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.models.order import Order
