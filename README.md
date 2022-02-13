@@ -1,4 +1,11 @@
-# openapy
+[![pypi version](https://img.shields.io/pypi/v/openapy.svg?style=flat)](https://pypi.org/pypi/openapy/)
+[![python versions](https://img.shields.io/pypi/pyversions/openapy.svg?style=flat)](https://pypi.org/pypi/openapy/)
+[![license](https://img.shields.io/pypi/l/openapy.svg?style=flat)](https://github.com/edge-minato/openapy/blob/master/LICENSE)
+[![Unittest](https://github.com/edge-minato/openapy/actions/workflows/unittest.yml/badge.svg)](https://github.com/edge-minato/openapy/actions/workflows/unittest.yml)
+[![codecov](https://codecov.io/gh/edge-minato/openapy/branch/main/graph/badge.svg?token=YDZAMKUNS0)](https://codecov.io/gh/edge-minato/openapy)
+[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black")
+[![Downloads](https://pepy.tech/badge/openapy)](https://pepy.tech/project/openapy)
+[![Downloads](https://pepy.tech/badge/openapy/week)](https://pepy.tech/project/openapy)
 
 `openapy` adds CI/CD capability to [OpenAPI generator](https://github.com/OpenAPITools/openapi-generator)
 
