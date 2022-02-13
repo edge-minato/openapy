@@ -55,8 +55,8 @@ class Function:
         function.args.defaults = []
         self.definition = "async def" if isinstance(function, AsyncFunctionDef) else "def"
         self.name = function.name
-        self.return_type = unparse(function.returns)
-        self.args = unparse(function.args)
+        self.return_type = unparse(function.returns) if function.returns is not None else ""
+        self.args = unparse(function.args) if function.args is not None else ""
         self.comments = "\n    ".join([f'"""{c.value.value}"""' for c in function.body if isinstance(c, Expr)])  # type: ignore # noqa: E501
         self.body = "\n    ".join(
             [unparse(body) for body in function.body if (not isinstance(body, Expr) and not isinstance(body, Return))]

@@ -36,13 +36,14 @@ def remove_tmp_dir(tmp: Path) -> None:
 def scope_session() -> Generator:
     print("\nsetup before session")
     tmp = TESTS_DIR.joinpath("tmp")
-
     remove_tmp_dir(tmp)
     prepare_tmp_dir(tmp)
     yield
     remove_tmp_dir(tmp)
     for version in TARGET_VERSION:
         remove_tmp_dir(EXAMPLES_DIR.joinpath(version).joinpath("processor"))
+    remove_tmp_dir(EXAMPLES_DIR.joinpath("existing").joinpath("processor"))
+
     print("\nteardown after session")
 
 
