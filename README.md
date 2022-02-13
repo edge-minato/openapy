@@ -1,4 +1,4 @@
-![openapy Logo](https://raw.githubusercontent.com/edge-minato/openapy/main/doc/img/logo.jpg)
+![openapy Logo](https://raw.githubusercontent.com/edge-minato/openapy/main/docs/img/logo.jpg)
 
 
 [![pypi version](https://img.shields.io/pypi/v/openapy.svg?style=flat)](https://pypi.org/pypi/openapy/)
@@ -10,7 +10,11 @@
 [![Downloads](https://pepy.tech/badge/openapy)](https://pepy.tech/project/openapy)
 [![Downloads](https://pepy.tech/badge/openapy/week)](https://pepy.tech/project/openapy)
 
-`openapy` adds CI/CD capability to [OpenAPI generator](https://github.com/OpenAPITools/openapi-generator)
+
+`Openapy` simplifies continuous development with [OpenAPI generator](https://github.com/OpenAPITools/openapi-generator).
+What this tool does is read python source files and split functions into individual files.
+This will prevent the openapi generator from overwriting the code you have written.
+
 
 
 ## Overview

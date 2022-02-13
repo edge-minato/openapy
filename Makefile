@@ -33,3 +33,6 @@ unittest:
 
 style:
 	poetry run tox -e black,flake8,mypy,isort
+
+doc:
+	docker run --rm -v docs:/docs sphinxdoc/sphinx make html
