@@ -2,21 +2,32 @@ from pathlib import Path
 
 from openapy.args import get_args
 from openapy.config import Config, DestinationConfig
-from openapy.io import write_file
+from openapy.diff import compare_as_function
+from openapy.io import read_file, write_file
 from openapy.parser import parse
 from openapy.render import FilePerFunction
 from openapy.template import get_template
 
 
-def render_file(file: Path, dc: DestinationConfig, template: str) -> None:
+def render_file(file: Path, dc: DestinationConfig, template: str, overwrite: bool) -> None:
     ppf = parse(file)
     # iterate each functions
     for function in ppf.functions:
         # print(function.name)
-        fpf = FilePerFunction(ppf.imports, ppf.assigns, function)
-        rendered = fpf.render(template)
-        # print(dc.get_output_file_path(function.name))
-        write_file(dc.get_output_file_path(function.name), rendered)
+        conflict = False
+        rendered = FilePerFunction(ppf.imports, ppf.assigns, function).render(template)
+        output_file_path = dc.get_output_file_path(function.name)
+        if output_file_path.is_file() and overwrite:
+            old = read_file(output_file_path)
+            if compare_as_function(old, rendered):
+                print("Skip")
+                return
+            print("Conflicting with the existing file")
+            conflict = True
+        if conflict:
+            output_file_path = dc.get_output_file_path(f"{function.name}.new")
+        print(output_file_path)
+        write_file(output_file_path, rendered)
 
 
 def main() -> None:
@@ -25,4 +36,4 @@ def main() -> None:
     config = Config(Path(args.src), args.all)
     # iterate each source files
     for file in config.source_config.get_files():
-        render_file(file, config.destination_config, template)
+        render_file(file, config.destination_config, template, args.all)
