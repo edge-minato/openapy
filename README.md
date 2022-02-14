@@ -12,7 +12,7 @@
 
 
 `Openapy` simplifies continuous development with [OpenAPI generator](https://github.com/OpenAPITools/openapi-generator).
-What this tool does is read python source files and split functions into individual files.
+What this tool does is read python source files and copy functions into individual files.
 This will prevent the openapi generator from overwriting the code you have written.
 
 

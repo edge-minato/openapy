@@ -1,6 +1,6 @@
 # Minimal makefile for Sphinx documentation
 #
-poetry_build:
+build-doc:
 	rm -rf _buiid && poetry run make html && cp _build /mnt/c/Users/minato/Desktop/ -R
 # You can set these variables from the command line, and also
 # from the environment for the first two.

@@ -7,7 +7,7 @@ from single_source import get_version
 from openapy.io import exit_with_error
 
 GITHUB = "https://github.com/edge-minato/openapy"
-VERSION = get_version(__name__, Path(__file__).parent.parent)
+VERSION = get_version(__package__, Path(__file__).parent.parent)
 LOGO = """
  ██████╗ ██████╗ ███████╗███╗   ██╗ █████╗ ██████╗ ██╗   ██╗
 ██╔═══██╗██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔══██╗╚██╗ ██╔╝

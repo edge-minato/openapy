@@ -1,6 +1,5 @@
-.PHONY: install update clean build run debug test style
+.PHONY: install update clean build run debug test style docker
 PACKAGE := $(shell grep name pyproject.toml -m1 | awk -F" " '{print $$3}')
-VERSION := $(shell grep version pyproject.toml -m1 | awk -F" " '{print $$3}')
 
 install:
 	poetry install
@@ -34,5 +33,5 @@ unittest:
 style:
 	poetry run tox -e black,flake8,mypy,isort
 
-doc:
-	docker run --rm -v docs:/docs sphinxdoc/sphinx make html
+docker:
+	docker build . -t openapy

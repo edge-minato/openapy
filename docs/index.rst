@@ -17,7 +17,7 @@ Quick Start
 ===================================
 **Prerequisite**: Source code are generated with OpenAPI Generator.
 
-:code:`docker run -v ${PWD}:/src --src src/openapi-server/apis edgem/openapy`
+:code:`docker run -v ${PWD}:/src edgem/openapy openapy --src src/openapi-server/apis`
 
 Copied files per function are generated under `src/openapi-server/processor`.
 
