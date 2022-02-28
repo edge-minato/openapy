@@ -27,7 +27,7 @@ def test_source_config_ignore() -> None:
 def test_source_config_error() -> None:
     with pytest.raises(SystemExit) as e:
         _ = SourceConfig(DIR_NOT_FOUND, ignore=[])
-        assert e.value.code == 1  # type: ignore
+    assert e.value.code == 1  # type: ignore
 
 
 def test_destination_config_default() -> None:

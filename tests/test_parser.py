@@ -12,6 +12,5 @@ def test_parse() -> None:
 
 
 def test_parse_error() -> None:
-    with pytest.raises(FileNotFoundError) as e:
+    with pytest.raises(FileNotFoundError):
         _ = parse(FILE_NOT_FOUND)
-        assert e.value.code == 1  # type: ignore
