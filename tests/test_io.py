@@ -1,4 +1,7 @@
-from openapy.io import read_file, write_file
+import pytest
+from pytest_mock import MockFixture
+
+from openapy.io import get_my_resource, read_file, write_file
 from tests.conftest import REPO_DIR, TEMP_DIR
 
 
@@ -15,3 +18,14 @@ def test_write() -> None:
     with file.open(mode="r") as f:
         read_content = f.read()
     assert content == read_content
+
+
+def test_resource() -> None:
+    with pytest.raises(Exception):
+        _ = get_my_resource("RESOURCE_ABCDE")
+
+
+def test_resource_not_found(mocker: MockFixture) -> None:
+    mocker.patch("pkgutil.get_data", return_value=None)
+    with pytest.raises(Exception):
+        _ = get_my_resource("RESOURCE_ABCDE")
