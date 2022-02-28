@@ -14,4 +14,4 @@ def test_get_template() -> None:
 def test_get_template_error() -> None:
     with pytest.raises(SystemExit) as e:
         _ = get_template(str(FILE_NOT_FOUND))
-        assert e.value.code == 1  # type: ignore
+    assert e.value.code == 1  # type: ignore

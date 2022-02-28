@@ -23,9 +23,11 @@ This will prevent the openapi generator from overwriting the code you have writt
 
 ### With Docker
 
+```sh
+docker run --rm -v "$PWD:/src" edgem/openapy \
+    openapy --src /src/openapi-server/apis
 ```
-docker run
-```
+
 
 ### With Installation
 
