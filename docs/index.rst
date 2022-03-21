@@ -5,27 +5,19 @@ What this tool does is read python source files and copy functions into individu
 This will prevent the openapi generator from overwriting the code you have written.
 
 
-Installation
-===================================
-Docker image is available: `Openapy  <https://github.com/edge-minato/openapy>`_
-
-:code:`poetry add -D openapy` or :code:`pip install openapy`
-
-
 
 Quick Start
 ===================================
-**Prerequisite**: Source code are generated with OpenAPI Generator.
 
-:code:`docker run -v ${PWD}:/src edgem/openapy openapy --src src/openapi-server/apis`
+.. code-block:: shell
 
-Copied files per function are generated under `src/openapi-server/processor`.
+   docker run -v ${PWD}:/src edgem/openapy \
+   openapy generate --src src/openapi-server/apis
 
-.. code-block:: python
+.. code-block::
 
-   # src/openapi-server/processor/process_get_pet.py
-   import sys
-   print(sys.path)
+   pip install openapy
+   openapy generate --src ./openapi-server/apis
 
 Content
 ===================================

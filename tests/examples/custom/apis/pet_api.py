@@ -22,11 +22,11 @@ from openapi_server.models.pet import Pet
 from openapi_server.security_api import get_token_api_key, get_token_petstore_auth
 
 router = APIRouter()
-responce_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
+response_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
 
 
 # add_pet ########################################################################
-responses_add_pet: responce_type = {
+responses_add_pet: response_type = {
     200: {"model": Pet, "description": "successful operation"},
     405: {"description": "Invalid input"},
 }
@@ -50,7 +50,7 @@ async def add_pet(
 
 
 # delete_pet ########################################################################
-responses_delete_pet: responce_type = {
+responses_delete_pet: response_type = {
     400: {"description": "Invalid pet value"},
 }
 
@@ -75,7 +75,7 @@ async def delete_pet(
 
 
 # find_pets_by_status ########################################################################
-responses_find_pets_by_status: responce_type = {
+responses_find_pets_by_status: response_type = {
     200: {"model": List[Pet], "description": "successful operation"},
     400: {"description": "Invalid status value"},
 }
@@ -99,7 +99,7 @@ async def find_pets_by_status(
 
 
 # find_pets_by_tags ########################################################################
-responses_find_pets_by_tags: responce_type = {
+responses_find_pets_by_tags: response_type = {
     200: {"model": List[Pet], "description": "successful operation"},
     400: {"description": "Invalid tag value"},
 }
@@ -123,7 +123,7 @@ async def find_pets_by_tags(
 
 
 # get_pet_by_id ########################################################################
-responses_get_pet_by_id: responce_type = {
+responses_get_pet_by_id: response_type = {
     200: {"model": Pet, "description": "successful operation"},
     400: {"description": "Invalid ID supplied"},
     404: {"description": "Pet not found"},
@@ -148,7 +148,7 @@ async def get_pet_by_id(
 
 
 # update_pet ########################################################################
-responses_update_pet: responce_type = {
+responses_update_pet: response_type = {
     200: {"model": Pet, "description": "successful operation"},
     400: {"description": "Invalid ID supplied"},
     404: {"description": "Pet not found"},
@@ -174,7 +174,7 @@ async def update_pet(
 
 
 # update_pet_with_form ########################################################################
-responses_update_pet_with_form: responce_type = {
+responses_update_pet_with_form: response_type = {
     405: {"description": "Invalid input"},
 }
 
@@ -201,7 +201,7 @@ async def update_pet_with_form(
 
 
 # upload_file ########################################################################
-responses_upload_file: responce_type = {
+responses_upload_file: response_type = {
     200: {"model": ApiResponse, "description": "successful operation"},
 }
 
