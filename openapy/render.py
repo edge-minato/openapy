@@ -1,5 +1,5 @@
 import ast
-from ast import AsyncFunctionDef, Expr, Return, unparse  # type: ignore
+from ast import AsyncFunctionDef, Constant, Expr, Return, unparse  # type: ignore
 from typing import List
 
 from openapy.parser import TypeAssigns, TypeFunctions, TypeImports
@@ -49,6 +49,14 @@ class Import:
         self.unparsed = "\n".join([f"{unparse(i)}{suffix}" for i in imports])
 
 
+def is_body(body: object) -> bool:
+    if isinstance(body, Expr) and isinstance(body.value, Constant):
+        return False
+    elif isinstance(body, Return):
+        return False
+    return True
+
+
 class Function:
     def __init__(self, function: TypeFunctions) -> None:
         function.decorator_list = []
@@ -57,10 +65,10 @@ class Function:
         self.name = function.name
         self.return_type = unparse(function.returns) if function.returns is not None else ""
         self.args = unparse(function.args) if function.args is not None else ""
-        self.comments = "\n    ".join([f'"""{c.value.value}"""' for c in function.body if isinstance(c, Expr)])  # type: ignore # noqa: E501
-        self.body = "\n    ".join(
-            [unparse(body) for body in function.body if (not isinstance(body, Expr) and not isinstance(body, Return))]
-        )
+        self.comments = "\n    ".join(
+            [f'"""{c.value.value}"""' for c in function.body if isinstance(c, Expr) and isinstance(c.value, Constant)]
+        )  # type: ignore # noqa: E501
+        self.body = "\n    ".join([unparse(body) for body in function.body if is_body(body)])
         self.returns = "\n".join([unparse(ret) for ret in function.body if isinstance(ret, Return)])
         for body in function.body:
             if not isinstance(body, (ast.Assign, ast.Pass, Expr, Return)):

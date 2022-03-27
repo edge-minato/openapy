@@ -2,7 +2,8 @@
 
 cd `dirname $0`
 
-docker run --rm -v "$PWD:/src" edgem/openapy:0.3 \
+. ../version.sh
+docker run --rm -v "$PWD:/src" edgem/openapy:${OPENAPY_VERSION} \
 openapy generate --src /src/apis
 
 sudo chown $USER:$USER processor -R
