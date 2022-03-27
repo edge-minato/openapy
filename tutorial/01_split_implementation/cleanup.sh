@@ -2,4 +2,5 @@
 
 cd `dirname $0`
 
-rm processor -rf
+. ../version.sh
+rm ./processor -rf

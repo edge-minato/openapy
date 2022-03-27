@@ -227,6 +227,11 @@ async def upload_file(
     )
 
 
-async def pass_test() -> None:
+async def test_pass() -> None:
     pass
     return None
+
+
+async def test_call_wo_return() -> None:
+    """Comments"""
+    processor.function_a()
