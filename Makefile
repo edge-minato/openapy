@@ -10,19 +10,17 @@ update:
 	poetry run pre-commit autoupdate
 
 clean:
-	rm -rf dist
+	rm -rf dist && ./debug/cleanup.sh
 
 build: clean
 	poetry build
 
-run:
-	poetry run ${PACKAGE} -s "tests/server/src/openapi_server/apis" -t "testtttt"
+run: clean
+	poetry run ${PACKAGE} generate -s "debug/apis"
 
-try:
-	poetry run ${PACKAGE} -s ./tests/server/src/openapi_server/apis -d ./tests -t ./tests
 
 debug:
-	poetry run pytest ./tests -v -x --cov=openapy --cov-branch --durations=0 -l
+	poetry run pytest ./tests -v -s -x --cov=openapy --cov-branch --durations=0 -l
 
 test:
 	poetry run tox
