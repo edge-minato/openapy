@@ -21,7 +21,7 @@ repos:
     rev: v0.0.1a2.post1
     hooks:
       - id: pyproject-flake8
-        exclude: ^tests
+        exclude: ^tests|^debug
   - repo: https://github.com/pycqa/isort
     rev: 5.10.1
     hooks:
@@ -31,5 +31,5 @@ repos:
     rev: v0.941
     hooks:
       - id: mypy
-        exclude: ^tests
+        exclude: ^tests|^debug
         args: [--ignore-missing-imports]
