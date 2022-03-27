@@ -21,6 +21,7 @@ from openapi_server.models.api_response import ApiResponse
 from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.models.pet import Pet
 from openapi_server.security_api import get_token_api_key, get_token_petstore_auth
+from processor import __init__
 
 router = APIRouter()
 responce_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
