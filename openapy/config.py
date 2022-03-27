@@ -28,7 +28,7 @@ class DestinationConfig:
         self.directory.mkdir(exist_ok=True)
 
     def get_output_file_path(self, function_name: str) -> Path:
-        return self.directory.joinpath(f"process_{function_name}.py")
+        return self.directory.joinpath(f"{function_name}.py")
 
 
 class Config:
