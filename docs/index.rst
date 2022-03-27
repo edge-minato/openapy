@@ -33,3 +33,4 @@ Content
 
    pages/examples/index
    pages/template/index
+   pages/tutorial/index
