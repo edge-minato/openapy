@@ -21,14 +21,16 @@ from openapi_server.models.order import Order
 from openapi_server.security_api import get_token_api_key
 
 router = APIRouter()
-responce_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
+response_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
 
 
 # delete_order ########################################################################
-responses_delete_order: responce_type = {
+responses_delete_order: response_type = {
     400: {"description": "Invalid ID supplied"},
     404: {"description": "Order not found"},
 }
+
+
 @router.delete(
     "/store/order/{orderId}",
     responses=responses_delete_order,
@@ -44,11 +46,12 @@ async def delete_order(
     )
 
 
-
 # get_inventory ########################################################################
-responses_get_inventory: responce_type = {
+responses_get_inventory: response_type = {
     200: {"model": Dict[str, int], "description": "successful operation"},
 }
+
+
 @router.get(
     "/store/inventory",
     responses=responses_get_inventory,
@@ -56,9 +59,7 @@ responses_get_inventory: responce_type = {
     summary="Returns pet inventories by status",
 )
 async def get_inventory(
-    token_api_key: TokenModel = Security(
-        get_token_api_key
-    ),
+    token_api_key: TokenModel = Security(get_token_api_key),
 ) -> Dict[str, int]:
     """Returns a map of status codes to quantities"""
     return processor.store.get_inventory(
@@ -66,13 +67,14 @@ async def get_inventory(
     )
 
 
-
 # get_order_by_id ########################################################################
-responses_get_order_by_id: responce_type = {
+responses_get_order_by_id: response_type = {
     200: {"model": Order, "description": "successful operation"},
     400: {"description": "Invalid ID supplied"},
     404: {"description": "Order not found"},
 }
+
+
 @router.get(
     "/store/order/{orderId}",
     responses=responses_get_order_by_id,
@@ -88,12 +90,13 @@ async def get_order_by_id(
     )
 
 
-
 # place_order ########################################################################
-responses_place_order: responce_type = {
+responses_place_order: response_type = {
     200: {"model": Order, "description": "successful operation"},
     400: {"description": "Invalid Order"},
 }
+
+
 @router.post(
     "/store/order",
     responses=responses_place_order,
@@ -103,7 +106,7 @@ responses_place_order: responce_type = {
 async def place_order(
     order: Order = Body(None, description="order placed for purchasing the pet"),
 ) -> Order:
-    
+
     return processor.store.place_order(
         order,
     )

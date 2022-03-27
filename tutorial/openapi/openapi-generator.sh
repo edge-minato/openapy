@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#!/bin/bash
+
+set -eu
+cd `dirname $0`
+
+OPENAPI_IMAGE_TAG="v5.4.0"
+OPENAPI_TAG="custom"
+OPENAPI_IMAGE="openapitools/openapi-generator-cli"
+GENERATOR="python-fastapi"
+APISPEC_YAML="openapi.yaml"
+
+function generate(){
+    docker run --rm -v ${PWD}:/local \
+    ${OPENAPI_IMAGE}:${OPENAPI_IMAGE_TAG} generate \
+    -i /local/${APISPEC_YAML} \
+    -g ${GENERATOR} \
+    -t /local/mustache/${OPENAPI_TAG} \
+    -o /local/apis/tmp
+    sudo chown ${USER}:${USER} apis/tmp/src/openapi_server/apis -R
+    mkdir -pv ${OPENAPI_TAG}/apis
+    sudo mv apis/tmp/src/openapi_server/apis/* ${OPENAPI_TAG}/apis
+    sudo rm -rf apis/tmp
+}
+
+generate

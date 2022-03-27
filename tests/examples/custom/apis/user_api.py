@@ -21,11 +21,11 @@ from openapi_server.models.user import User
 from openapi_server.security_api import get_token_api_key
 
 router = APIRouter()
-responce_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
+response_type = Optional[Dict[Union[int, str], Dict[str, Any]]]
 
 
 # create_user ########################################################################
-responses_create_user: responce_type = {
+responses_create_user: response_type = {
     200: {"description": "successful operation"},
 }
 
@@ -48,7 +48,7 @@ async def create_user(
 
 
 # create_users_with_array_input ########################################################################
-responses_create_users_with_array_input: responce_type = {
+responses_create_users_with_array_input: response_type = {
     200: {"description": "successful operation"},
 }
 
@@ -71,7 +71,7 @@ async def create_users_with_array_input(
 
 
 # create_users_with_list_input ########################################################################
-responses_create_users_with_list_input: responce_type = {
+responses_create_users_with_list_input: response_type = {
     200: {"description": "successful operation"},
 }
 
@@ -94,7 +94,7 @@ async def create_users_with_list_input(
 
 
 # delete_user ########################################################################
-responses_delete_user: responce_type = {
+responses_delete_user: response_type = {
     400: {"description": "Invalid username supplied"},
     404: {"description": "User not found"},
 }
@@ -118,7 +118,7 @@ async def delete_user(
 
 
 # get_user_by_name ########################################################################
-responses_get_user_by_name: responce_type = {
+responses_get_user_by_name: response_type = {
     200: {"model": User, "description": "successful operation"},
     400: {"description": "Invalid username supplied"},
     404: {"description": "User not found"},
@@ -141,7 +141,7 @@ async def get_user_by_name(
 
 
 # login_user ########################################################################
-responses_login_user: responce_type = {
+responses_login_user: response_type = {
     200: {"model": str, "description": "successful operation"},
     400: {"description": "Invalid username/password supplied"},
 }
@@ -167,7 +167,7 @@ async def login_user(
 
 
 # logout_user ########################################################################
-responses_logout_user: responce_type = {
+responses_logout_user: response_type = {
     200: {"description": "successful operation"},
 }
 
@@ -188,7 +188,7 @@ async def logout_user(
 
 
 # update_user ########################################################################
-responses_update_user: responce_type = {
+responses_update_user: response_type = {
     400: {"description": "Invalid user supplied"},
     404: {"description": "User not found"},
 }
