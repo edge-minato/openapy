@@ -62,7 +62,6 @@ class Function:
             [unparse(body) for body in function.body if (not isinstance(body, Expr) and not isinstance(body, Return))]
         )
         self.returns = "\n".join([unparse(ret) for ret in function.body if isinstance(ret, Return)])
-
         for body in function.body:
-            if not isinstance(body, (ast.Assign, Expr, Return)):
-                print(body)
+            if not isinstance(body, (ast.Assign, ast.Pass, Expr, Return)):
+                print(f"    Warning: {body} is not supported. Please create an issue on github.")
