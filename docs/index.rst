@@ -16,14 +16,8 @@ Quick Start
 
 .. code-block::
 
-<<<<<<< HEAD
-   # src/openapi-server/processor/get_pet.py
-   import sys
-   print(sys.path)
-=======
    pip install openapy
    openapy generate --src ./openapi-server/apis
->>>>>>> 077f952... doc: readme and tutorial
 
 Content
 ===================================
