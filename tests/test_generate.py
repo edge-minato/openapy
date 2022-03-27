@@ -2,8 +2,8 @@ from ast import parse
 from pathlib import Path
 from typing import Optional
 
-from openapy.commands.generate import generate
-from tests.conftest import EXAMPLE_APIS_DIR, EXAMPLES_DIR, TARGET_VERSION
+from openapy.commands.generate import generate, render_init
+from tests.conftest import EXAMPLE_APIS_DIR, EXAMPLES_DIR, TARGET_VERSION, TEMP_DIR
 
 
 class MockArgParser:
@@ -61,3 +61,14 @@ def test_generate_updating() -> None:
         i += 1
     assert i == 6  # out of 8
     print("ok")
+
+
+def test_render_init() -> None:
+    output_files = [Path(file) for file in ["a.py", "b.py", "c.py"]]
+    init_py = TEMP_DIR.joinpath("__init__.py")
+    render_init(output_files, init_py)
+    with init_py.open(mode="r") as f:
+        rendered = f.read()
+    assert "from .a import a  # noqa: F401" in rendered
+    assert "from .b import b  # noqa: F401" in rendered
+    assert "from .c import c  # noqa: F401" in rendered

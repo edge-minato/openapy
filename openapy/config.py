@@ -30,6 +30,10 @@ class DestinationConfig:
     def get_output_file_path(self, function_name: str) -> Path:
         return self.directory.joinpath(f"{function_name}.py")
 
+    def get_files(self) -> List[Path]:
+        files = self.directory.glob("*.py")
+        return [file for file in files if "__init__" not in file.name]
+
 
 class Config:
     def __init__(self, src: Path, generate_all: bool):
