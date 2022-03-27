@@ -59,7 +59,7 @@ async def {{operationId}}(
     {{/hasAuthMethods}}
 ) -> {{returnType}}{{^returnType}}None{{/returnType}}:
     {{#notes}}"""{{.}}"""{{/notes}}{{^notes}}{{/notes}}
-    return processor.{{#tags}}{{#-first}}{{name}}{{/-first}}{{/tags}}.{{operationId}}(
+    return processor.{{operationId}}(
         {{#allParams}}
         {{#isPathParam}}{{baseName}}{{/isPathParam}}{{^isPathParam}}{{paramName}}{{/isPathParam}},
         {{/allParams}}
