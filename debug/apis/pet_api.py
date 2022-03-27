@@ -225,3 +225,8 @@ async def upload_file(
         file,
         token_petstore_auth,
     )
+
+
+async def pass_test() -> None:
+    pass
+    return None

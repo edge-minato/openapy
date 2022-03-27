@@ -24,6 +24,7 @@ TEMPLATE = """
 
 def {NAME}({ARGS}) -> {RETURN_TYPE}:
     {COMMENT}
+    {BODY}
     # implement me
     ...
 """
