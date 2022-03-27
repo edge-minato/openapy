@@ -22,7 +22,7 @@ TEMPLATE = """
 
 {IMPORTS}
 
-def process_{NAME}({ARGS}) -> {RETURN_TYPE}:
+def {NAME}({ARGS}) -> {RETURN_TYPE}:
     {COMMENT}
     # implement me
     ...
