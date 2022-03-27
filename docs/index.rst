@@ -23,7 +23,7 @@ Copied files per function are generated under `src/openapi-server/processor`.
 
 .. code-block:: python
 
-   # src/openapi-server/processor/process_get_pet.py
+   # src/openapi-server/processor/get_pet.py
    import sys
    print(sys.path)
 

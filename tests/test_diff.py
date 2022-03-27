@@ -135,7 +135,7 @@ def process(foo:str, bar:int):
 """
 
 new_different_name = """
-def process_get_user(foo:str, bar:int) -> str:
+def get_user(foo:str, bar:int) -> str:
     ...
 """
 
